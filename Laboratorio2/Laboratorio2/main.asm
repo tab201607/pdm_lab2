@@ -26,6 +26,7 @@ OUT SPL, R16
 LDI R17, HIGH(RAMEND)
 OUT SPH, R17
 
+; nuestra tabla de valores del 7 seg, con pin0 = a, pin1 = b...
 tabla7seg: .DB  0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x67, 0x77, 0x7C, 0x58, 0x5E, 0x79, 0x71
 
 ; ///////////////////////////////////////////////////////
@@ -70,21 +71,13 @@ CALL increment1
 SBIS PINB, PB1 ;Saltamos a decrement si PB1 esta en 0 (recordar pullup)
 CALL decrement1
 
-/*
-LDI R17, 4 ; Utilizamos left shift para desplegar contador 1 en PD4-7
-MOV R16, counter
-shift:
-LSL R16
-DEC R17
-BRNE shift*/
+LDI ZL, LOW(tabla7seg << 1) ; Seleccionamos el ZL para encontrar al bit bajo en el flash
+LDI ZH, HIGH(tabla7seg << 1) ; Seleccionamos el ZH para ecnontar al bit alto en el flash
 
-LDI ZL, LOW(tabla7seg << 1)
-LDI ZH, HIGH(tabla7seg << 1)
+ADD ZL, counter1 ; Le agreagamos el valor del counter1, para ir al valor especifico de la tabla
+LPM R16, Z ; Cargamos el valor del tabla a R16
 
-ADD ZL, counter1
-LPM R16, Z
-
-OUT PORTD, R16
+OUT PORTD, R16 ; Cargar el valor a PORTD
 
 RJMP Loop 
 

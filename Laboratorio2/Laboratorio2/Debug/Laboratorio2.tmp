@@ -23,13 +23,13 @@
   <FILE>Laboratorio2.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <tabla7seg><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>29</LINE></tabla7seg>
-  <Setup><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>35</LINE></Setup>
-  <Loop><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>65</LINE></Loop>
-  <increment1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>96</LINE></increment1>
-  <decrement1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>108</LINE></decrement1>
-  <delay><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>120</LINE></delay>
-  <delayouter><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>122</LINE></delayouter>
-  <delayinner><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>124</LINE></delayinner>
+  <tabla7seg><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>30</LINE></tabla7seg>
+  <Setup><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>36</LINE></Setup>
+  <Loop><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>66</LINE></Loop>
+  <increment1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>89</LINE></increment1>
+  <decrement1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>101</LINE></decrement1>
+  <delay><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>113</LINE></delay>
+  <delayouter><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>115</LINE></delayouter>
+  <delayinner><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Laboratorio2\Laboratorio2\main.asm</FILE><LINE>117</LINE></delayinner>
  </LABELS>
 </ASSEMBLER_INFO>
