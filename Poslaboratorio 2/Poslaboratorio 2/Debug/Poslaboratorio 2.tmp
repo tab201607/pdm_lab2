@@ -23,18 +23,18 @@
   <FILE>Poslaboratorio 2.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <tabla7seg><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>32</LINE></tabla7seg>
-  <Setup><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>38</LINE></Setup>
-  <timerinit><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>189</LINE></timerinit>
-  <recargarouterloop><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>82</LINE></recargarouterloop>
-  <innerloop><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>95</LINE></innerloop>
-  <alarma><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>131</LINE></alarma>
-  <timerrestart><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>199</LINE></timerrestart>
-  <increment1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>148</LINE></increment1>
-  <decrement1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>160</LINE></decrement1>
-  <alarmaapagado><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>139</LINE></alarmaapagado>
-  <delay><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>172</LINE></delay>
-  <delayouter><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>174</LINE></delayouter>
-  <delayinner><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>176</LINE></delayinner>
+  <tabla7seg><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>33</LINE></tabla7seg>
+  <Setup><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>39</LINE></Setup>
+  <timerinit><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>193</LINE></timerinit>
+  <recargarouterloop><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>84</LINE></recargarouterloop>
+  <innerloop><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>98</LINE></innerloop>
+  <alarma><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>134</LINE></alarma>
+  <timerrestart><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>203</LINE></timerrestart>
+  <increment1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>152</LINE></increment1>
+  <decrement1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>164</LINE></decrement1>
+  <alarmaapagado><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>143</LINE></alarmaapagado>
+  <delay><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>176</LINE></delay>
+  <delayouter><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>178</LINE></delayouter>
+  <delayinner><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>180</LINE></delayinner>
  </LABELS>
 </ASSEMBLER_INFO>

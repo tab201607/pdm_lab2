@@ -13,6 +13,7 @@
 
 .def counter1=R18 ; reservamos un register para el contador del display
 .def counter2=R19 ; reservamos un registro para el contador del timer
+.def counter1real=R22 ; reservamos un registro para guardar un valor virtual del counter2 para evitar un bug cuando se cambia este valor a medio conteo
 .def luzencendida=R20 ; para traquear el estado de la luz
 .def outerloop=R21 ; reservamos un reigster para servir como el outerloop
 
@@ -68,6 +69,7 @@ STS UCSR0B, R16 ; deshablitamos el serial en pd0 y pd1
 
 LDI counter1, 0x0F
 LDI counter2, 0x00
+LDI counter1real, 0x0F
 
 CALL timerinit
 
@@ -84,12 +86,13 @@ CALL timerinit
 LDI outerloop, 100 ; Loop exterior, le cargamos 100 para llegar a 1000
 
 INC counter2 ; Incrementamos el contador
-CPSE counter2, counter1 ; revisamos si son iguales
+CPSE counter2, counter1real ; revisamos si son iguales
 RJMP innerloop ; Si no lo son procedemos imediatamente a innerloop
 CALL alarma
 
 SBRC counter2, 4
 LDI counter2, 0x00 ; Aseguramos que no haya pasado de los 4 bits
+
 
 
 innerloop:
@@ -130,6 +133,7 @@ RJMP innerloop
 
 alarma: 
 LDI counter2, 0x00
+MOV counter1real, counter1 ; cargamos el valor del display al contador "real"
 
 SBIS PORTB, PB5
 RJMP alarmaapagado

@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm Sun Feb 11 20:13:07 2024
+AVRASM ver. 2.2.8  C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm Mon Feb 12 16:56:29 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm(12): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -1044,6 +1044,7 @@ C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaborato
                                  
                                  .def counter1=R18 ; reservamos un register para el contador del display
                                  .def counter2=R19 ; reservamos un registro para el contador del timer
+                                 .def counter1real=R22 ; reservamos un registro para guardar un valor virtual del counter2 para evitar un bug cuando se cambia este valor a medio conteo
                                  .def luzencendida=R20 ; para traquear el estado de la luz
                                  .def outerloop=R21 ; reservamos un reigster para servir como el outerloop
                                  
@@ -1106,8 +1107,9 @@ C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaborato
                                  
 000021 e02f                      LDI counter1, 0x0F
 000022 e030                      LDI counter2, 0x00
+000023 e06f                      LDI counter1real, 0x0F
                                  
-000023 940e 005d                 CALL timerinit
+000024 940e 005f                 CALL timerinit
                                  
                                  
                                  ; ////////////////////////////////////////////////////////////////////
@@ -1119,64 +1121,66 @@ C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaborato
                                  
                                   recargarouterloop:
                                  
-000025 e654                      LDI outerloop, 100 ; Loop exterior, le cargamos 100 para llegar a 1000
+000026 e654                      LDI outerloop, 100 ; Loop exterior, le cargamos 100 para llegar a 1000
                                  
-000026 9533                      INC counter2 ; Incrementamos el contador
-000027 1332                      CPSE counter2, counter1 ; revisamos si son iguales
-000028 c004                      RJMP innerloop ; Si no lo son procedemos imediatamente a innerloop
-000029 940e 003f                 CALL alarma
+000027 9533                      INC counter2 ; Incrementamos el contador
+000028 1336                      CPSE counter2, counter1real ; revisamos si son iguales
+000029 c004                      RJMP innerloop ; Si no lo son procedemos imediatamente a innerloop
+00002a 940e 0040                 CALL alarma
                                  
-00002b fd34                      SBRC counter2, 4
-00002c e030                      LDI counter2, 0x00 ; Aseguramos que no haya pasado de los 4 bits
+00002c fd34                      SBRC counter2, 4
+00002d e030                      LDI counter2, 0x00 ; Aseguramos que no haya pasado de los 4 bits
+                                 
                                  
                                  
                                  innerloop:
                                   
-00002d 99a8                      SBIC TIFR0, 0 ; revisamos si el timer ha acabado
-00002e 940e 0062                 CALL timerrestart
+00002e 99a8                      SBIC TIFR0, 0 ; revisamos si el timer ha acabado
+00002f 940e 0064                 CALL timerrestart
                                  
-000030 3050                      CPI outerloop, 0x00 ; revisamos si outerloop es igual a 0 y regresamos
-000031 f399                      BREQ recargarouterloop
-                                 
-                                 
+000031 3050                      CPI outerloop, 0x00 ; revisamos si outerloop es igual a 0 y regresamos
+000032 f399                      BREQ recargarouterloop
                                  
                                  
-000032 b938                      OUT PORTC, counter2
+                                 
+                                 
+000033 b938                      OUT PORTC, counter2
                                  
                                  ; ////////////////////////////////////////////////
                                  ; Control contador buttons 7 segmentos
                                  ; ////////////////////////////////////////////////
                                  
-000033 9b18                       SBIS PINB, PB0 ;Saltamos a increment si PB0 esta en 0 (recordar pullup)
-000034 940e 0046                 CALL increment1
+000034 9b18                       SBIS PINB, PB0 ;Saltamos a increment si PB0 esta en 0 (recordar pullup)
+000035 940e 0048                 CALL increment1
                                  
-000036 9b19                      SBIS PINB, PB1 ;Saltamos a decrement si PB1 esta en 0 (recordar pullup)
-000037 940e 004e                 CALL decrement1
+000037 9b19                      SBIS PINB, PB1 ;Saltamos a decrement si PB1 esta en 0 (recordar pullup)
+000038 940e 0050                 CALL decrement1
                                  
-000039 e0e8                      LDI ZL, LOW(tabla7seg << 1) ; Seleccionamos el ZL para encontrar al bit bajo en el flash
-00003a e0f0                      LDI ZH, HIGH(tabla7seg << 1) ; Seleccionamos el ZH para ecnontar al bit alto en el flash
+00003a e0e8                      LDI ZL, LOW(tabla7seg << 1) ; Seleccionamos el ZL para encontrar al bit bajo en el flash
+00003b e0f0                      LDI ZH, HIGH(tabla7seg << 1) ; Seleccionamos el ZH para ecnontar al bit alto en el flash
                                  
-00003b 0fe2                      ADD ZL, counter1 ; Le agreagamos el valor del counter1, para ir al valor especifico de la tabla
-00003c 9104                      LPM R16, Z ; Cargamos el valor del tabla a R16
+00003c 0fe2                      ADD ZL, counter1 ; Le agreagamos el valor del counter1, para ir al valor especifico de la tabla
+00003d 9104                      LPM R16, Z ; Cargamos el valor del tabla a R16
                                  
-00003d b90b                      OUT PORTD, R16 ; Cargar el valor a PORTD
+00003e b90b                      OUT PORTD, R16 ; Cargar el valor a PORTD
                                  
                                  
                                  
-00003e cfee                      RJMP innerloop 
+00003f cfee                      RJMP innerloop 
                                  
                                  
                                  alarma: 
-00003f e030                      LDI counter2, 0x00
+000040 e030                      LDI counter2, 0x00
+000041 2f62                      MOV counter1real, counter1 ; cargamos el valor del display al contador "real"
                                  
-000040 9b2d                      SBIS PORTB, PB5
-000041 c002                      RJMP alarmaapagado
-000042 982d                      CBI PORTB, PB5
-000043 9508                      RET
+000042 9b2d                      SBIS PORTB, PB5
+000043 c002                      RJMP alarmaapagado
+000044 982d                      CBI PORTB, PB5
+000045 9508                      RET
                                  
                                  alarmaapagado: 
-000044 9a2d                      SBI PORTB, PB5
-000045 9508                      RET
+000046 9a2d                      SBI PORTB, PB5
+000047 9508                      RET
                                  
                                  
                                  ; ///////////////////////////////
@@ -1184,41 +1188,41 @@ C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaborato
                                  ; //////////////////////////////
                                  
                                  increment1: ; Modulo para incrementar en el contador 1
-000046 940e 0056                 CALL delay
+000048 940e 0058                 CALL delay
                                  
-000048 9b18                      	SBIS PINB, PB0 ; confirmamos que esta en 0
-000049 cffc                      	RJMP increment1
+00004a 9b18                      	SBIS PINB, PB0 ; confirmamos que esta en 0
+00004b cffc                      	RJMP increment1
                                  
-00004a 9523                      	INC counter1
-00004b fd24                      	SBRC counter1, 4 ; revisamos que no aumenta mas de los 4 bits
-00004c e02f                      	LDI counter1, 0x0F
+00004c 9523                      	INC counter1
+00004d fd24                      	SBRC counter1, 4 ; revisamos que no aumenta mas de los 4 bits
+00004e e02f                      	LDI counter1, 0x0F
                                  
-00004d 9508                      	RET
+00004f 9508                      	RET
                                  
                                  decrement1: ;  Modulo para decrementar en el contador 1
-00004e 940e 0056                 	CALL delay
+000050 940e 0058                 	CALL delay
                                  
-000050 9b19                      	SBIS PINB, PB1 ; confirmamos que esta en 0
-000051 cffc                      	RJMP decrement1
+000052 9b19                      	SBIS PINB, PB1 ; confirmamos que esta en 0
+000053 cffc                      	RJMP decrement1
                                  
-000052 952a                      	DEC counter1
-000053 fd27                      	SBRC counter1, 7 ; revisamos que no hace wraparound para estar de mas de 4 bits
-000054 e020                      	LDI counter1, 0x00
+000054 952a                      	DEC counter1
+000055 fd27                      	SBRC counter1, 7 ; revisamos que no hace wraparound para estar de mas de 4 bits
+000056 e020                      	LDI counter1, 0x00
                                  
-000055 9508                      	RET
+000057 9508                      	RET
                                  
                                  delay:
-000056 e015                      LDI R17, 5 ; loop externo
+000058 e015                      LDI R17, 5 ; loop externo
                                  delayouter:
-000057 ef0a                      LDI R16, 250 ; loop interno
+000059 ef0a                      LDI R16, 250 ; loop interno
                                  delayinner:
-000058 950a                      	DEC R16
-000059 f7f1                      	BRNE delayinner
+00005a 950a                      	DEC R16
+00005b f7f1                      	BRNE delayinner
                                  
-00005a 951a                      	DEC R17
-00005b f7d9                      	BRNE delayouter
+00005c 951a                      	DEC R17
+00005d f7d9                      	BRNE delayouter
                                  
-00005c 9508                      RET
+00005e 9508                      RET
                                  
                                  ; //////////////////////////////
                                  ; Modulos de control del timer
@@ -1226,22 +1230,22 @@ C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaborato
                                  
                                  timerinit: 
                                  
-00005d e005                      LDI R16, (1 << CS02) | (1 << CS00)
-00005e bd05                      OUT TCCR0B, R16 ; prescaler de 1024
+00005f e005                      LDI R16, (1 << CS02) | (1 << CS00)
+000060 bd05                      OUT TCCR0B, R16 ; prescaler de 1024
                                  
-00005f ef06                      LDI R16, 246 ; Cargamos 246 al contador = aproximadamente 10ms
-000060 bd06                      OUT TCNT0, R16 
+000061 ef06                      LDI R16, 246 ; Cargamos 246 al contador = aproximadamente 10ms
+000062 bd06                      OUT TCNT0, R16 
                                  
-000061 9508                      RET
+000063 9508                      RET
                                  
                                  timerrestart:
-000062 ef06                      LDI R16, 246 ; Cargamos 246 al contador = aproximadamente 10ms
-000063 bd06                      OUT TCNT0, R16
+000064 ef06                      LDI R16, 246 ; Cargamos 246 al contador = aproximadamente 10ms
+000065 bd06                      OUT TCNT0, R16
                                  
-000064 9aa8                      SBI TIFR0, 0 ; Colocamos un 0 TV0 para reiniciar el timer
-000065 955a                      DEC outerloop
+000066 9aa8                      SBI TIFR0, 0 ; Colocamos un 0 TV0 para reiniciar el timer
+000067 955a                      DEC outerloop
                                  
-000066 9508                      RET
+000068 9508                      RET
                                  
 
 
@@ -1263,9 +1267,9 @@ counted separately from r26..r31 here.
 x  :   0 y  :   0 z  :   1 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
 r13:   0 r14:   0 r15:   0 r16:  30 r17:   4 r18:   9 r19:   7 r20:   0 
-r21:   3 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r21:   3 r22:   3 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   2 r31:   1 
-Registers used: 8 out of 35 (22.9%)
+Registers used: 9 out of 35 (25.7%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   1 adiw  :   0 and   :   0 
@@ -1278,8 +1282,8 @@ clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   1 cpse  :   1 dec   :   4 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   2 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :  25 lds   :   0 lpm   :   2 lsl   :   0 
-lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+ld    :   0 ldd   :   0 ldi   :  26 lds   :   0 lpm   :   2 lsl   :   0 
+lsr   :   0 mov   :   1 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  13 pop   :   0 
 push  :   0 rcall :   0 ret   :   7 reti  :   0 rjmp  :   5 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   2 sbic  :   1 sbis  :   5 
@@ -1287,12 +1291,12 @@ sbiw  :   0 sbr   :   0 sbrc  :   3 sbrs  :   0 sec   :   0 seh   :   0
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   3 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 19 out of 113 (16.8%)
+Instructions used: 20 out of 113 (17.7%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000ce    190     16    206   32768   0.6%
+[.cseg] 0x000000 0x0000d2    194     16    210   32768   0.6%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
