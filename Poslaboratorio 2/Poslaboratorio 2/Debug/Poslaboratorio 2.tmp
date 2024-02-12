@@ -1,0 +1,40 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\Debug\Poslaboratorio 2.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>Poslaboratorio 2.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>Poslaboratorio 2.map</FILE>
+  <FILE>Poslaboratorio 2.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <tabla7seg><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>32</LINE></tabla7seg>
+  <Setup><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>38</LINE></Setup>
+  <timerinit><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>189</LINE></timerinit>
+  <recargarouterloop><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>82</LINE></recargarouterloop>
+  <innerloop><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>95</LINE></innerloop>
+  <alarma><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>131</LINE></alarma>
+  <timerrestart><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>199</LINE></timerrestart>
+  <increment1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>148</LINE></increment1>
+  <decrement1><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>160</LINE></decrement1>
+  <alarmaapagado><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>139</LINE></alarmaapagado>
+  <delay><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>172</LINE></delay>
+  <delayouter><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>174</LINE></delayouter>
+  <delayinner><FILE>C:\Users\kirby\Documents\Atmel Studio\7.0\PdM Lab 2\Poslaboratorio 2\Poslaboratorio 2\main.asm</FILE><LINE>176</LINE></delayinner>
+ </LABELS>
+</ASSEMBLER_INFO>
