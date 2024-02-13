@@ -195,13 +195,13 @@ timerinit:
 LDI R16, (1 << CS02) | (1 << CS00)
 OUT TCCR0B, R16 ; prescaler de 1024
 
-LDI R16, 246 ; Cargamos 246 al contador = aproximadamente 10ms
+LDI R16, 235 ; Cargamos 235 al contador = aproximadamente 10ms
 OUT TCNT0, R16 
 
 RET
 
 timerrestart:
-LDI R16, 246 ; Cargamos 246 al contador = aproximadamente 10ms
+LDI R16, 235 ; Cargamos 235 al contador = aproximadamente 10ms
 OUT TCNT0, R16
 
 SBI TIFR0, 0 ; Colocamos un 0 TV0 para reiniciar el timer
